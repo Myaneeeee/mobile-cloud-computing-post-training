@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:frontend/theme/theme_provider.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class ProfileScreen extends StatefulWidget {
+  const ProfileScreen({super.key});
 
   @override
   // ignore: library_private_types_in_public_api
-  _HomeScreenState createState() => _HomeScreenState();
+  _ProfileScreenState createState() => _ProfileScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
-  int _currentIndex = 0; // Set the initial index to 0 (Home)
+class _ProfileScreenState extends State<ProfileScreen> {
+  int _currentIndex = 2;
 
   @override
   Widget build(BuildContext context) {
@@ -41,46 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
       body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15.0),
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: const [
-                  Text(
-                    "Welcome, User",
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ]),
-          ),
-          Expanded(
-            child: CarouselSlider(
-              options: CarouselOptions(
-                autoPlay: true,
-                enlargeCenterPage: true,
-                aspectRatio: 16 / 9,
-                viewportFraction: 0.9,
-              ),
-              items: [
-                'assets/images/carousel1.png',
-                'assets/images/carousel2.png',
-                'assets/images/carousel3.png',
-              ]
-                  .map((item) => Container(
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage(item),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ))
-                  .toList(),
-            ),
-          ),
-        ],
+        children: const [],
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
@@ -100,7 +60,6 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
         onTap: (index) {
           if (index == _currentIndex) {
-            // Do nothing if the same item is tapped
             return;
           }
           switch (index) {

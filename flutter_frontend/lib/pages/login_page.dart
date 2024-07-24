@@ -46,8 +46,8 @@ class _LoginScreenState extends State<LoginScreen> {
         Navigator.pushNamed(context, '/home');
       } catch (e) {
         setState(() {
-          _loginError = e.toString();
-          // _loginError = 'Wrong credentials';
+          // _loginError = e.toString();
+          _loginError = 'Wrong credentials';
         });
         _formKey.currentState?.validate();
       }
