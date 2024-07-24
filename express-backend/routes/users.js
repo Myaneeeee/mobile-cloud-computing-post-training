@@ -54,12 +54,13 @@ router.post('/login', async (req, res) => {
       );
       res.status(200).json({ username: user.username, token });
     } else {
-      res.status(400).json({ error: 'Invalid credentials' }); 
+      res.status(400).json({ error: 'Invalid credentials' });
     }
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 });
+
 
 router.post('/logout', (req, res) => {
   res.status(200).json({ message: 'Logged out successfully' });
