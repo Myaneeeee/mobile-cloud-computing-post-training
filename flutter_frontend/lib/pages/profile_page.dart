@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:frontend/auth_guard.dart';
 import 'package:provider/provider.dart';
 import 'package:frontend/theme/theme_provider.dart';
 
@@ -12,6 +14,13 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   int _currentIndex = 2;
+  final storage = const FlutterSecureStorage();
+
+  void _logout() async {
+    await storage.delete(key: 'token');
+    // ignore: use_build_context_synchronously
+    AuthGuard().navigateTo(context, '/login');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +49,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ],
       ),
       body: Column(
-        children: const [],
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Center(
+            child: ElevatedButton(
+              onPressed: _logout,
+              style: ElevatedButton.styleFrom(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15),
+                ),
+              ),
+              child: const Text('Logout'),
+            ),
+          ),
+        ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
@@ -64,13 +89,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
           }
           switch (index) {
             case 0:
-              Navigator.pushNamed(context, '/home');
+              AuthGuard().navigateTo(context, '/home');
               break;
             case 1:
-              Navigator.pushNamed(context, '/items');
+              AuthGuard().navigateTo(context, '/items');
               break;
             case 2:
-              Navigator.pushNamed(context, '/profile');
+              AuthGuard().navigateTo(context, '/profile');
               break;
           }
           setState(() {

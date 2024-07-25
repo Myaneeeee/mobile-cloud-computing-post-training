@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/auth_guard.dart';
 import 'package:frontend/pages/home_page.dart';
 import 'package:frontend/pages/login_page.dart';
 import 'package:frontend/pages/profile_page.dart';
@@ -11,12 +12,14 @@ void main() {
   runApp(
     ChangeNotifierProvider(
       create: (context) => ThemeProvider(),
-      child: MyApp(),
+      child: const MyApp(),
     ),
   );
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -25,12 +28,21 @@ class MyApp extends StatelessWidget {
       theme: Provider.of<ThemeProvider>(context).themeData,
       initialRoute: '/',
       routes: {
-        '/': (context) => WelcomeScreen(),
-        '/login': (context) => LoginScreen(),
-        '/register': (context) => RegisterScreen(),
-        '/home': (context) => HomeScreen(),
-        '/profile': (context) => ProfileScreen(),
+        '/': (context) => const WelcomeScreen(),
+        '/login': (context) => const LoginScreen(),
+        '/register': (context) => const RegisterScreen(),
+        '/home': (context) => const HomeScreen(),
+        '/profile': (context) => const ProfileScreen(),
       },
+      // onGenerateRoute: (settings) {
+      //   final authGuard = AuthGuard();
+      //   return MaterialPageRoute(
+      //     builder: (context) {
+      //       authGuard.navigateTo(context, settings.name!);
+      //       return const SizedBox.shrink();
+      //     },
+      //   );
+      // },
     );
   }
 }

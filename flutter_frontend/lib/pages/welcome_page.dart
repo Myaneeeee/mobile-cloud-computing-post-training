@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/auth_guard.dart';
 import 'package:provider/provider.dart';
 import 'package:frontend/theme/theme_provider.dart';
 import 'package:frontend/widgets/logo_widget.dart'; // Import the LogoWidget
 
 class WelcomeScreen extends StatelessWidget {
+  const WelcomeScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
@@ -67,7 +70,7 @@ class WelcomeScreen extends StatelessWidget {
             const SizedBox(height: 50),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/register');
+                AuthGuard().navigateTo(context, '/register');
               },
               style: ElevatedButton.styleFrom(
                 padding:
@@ -81,7 +84,7 @@ class WelcomeScreen extends StatelessWidget {
             const SizedBox(height: 20),
             TextButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/login');
+                AuthGuard().navigateTo(context, '/login');
               },
               style: TextButton.styleFrom(
                 padding:

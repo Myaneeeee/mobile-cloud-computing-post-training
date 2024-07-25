@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/auth_guard.dart';
 import 'package:provider/provider.dart';
 import 'package:frontend/theme/theme_provider.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -105,13 +106,13 @@ class _HomeScreenState extends State<HomeScreen> {
           }
           switch (index) {
             case 0:
-              Navigator.pushNamed(context, '/home');
+              AuthGuard().navigateTo(context, '/home');
               break;
             case 1:
-              Navigator.pushNamed(context, '/items');
+              AuthGuard().navigateTo(context, '/items');
               break;
             case 2:
-              Navigator.pushNamed(context, '/profile');
+              AuthGuard().navigateTo(context, '/profile');
               break;
           }
           setState(() {

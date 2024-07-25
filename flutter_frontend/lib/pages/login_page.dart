@@ -1,12 +1,16 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:frontend/auth_guard.dart';
 import 'package:provider/provider.dart';
 import 'package:frontend/theme/theme_provider.dart';
 import 'package:frontend/api_service.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _LoginScreenState createState() => _LoginScreenState();
 }
 
@@ -27,7 +31,7 @@ class _LoginScreenState extends State<LoginScreen> {
     });
 
     if (_formKey.currentState?.validate() ?? false) {
-      final apiService = ApiService('http://localhost:3000/users');
+      final apiService = ApiService('http://10.0.2.2:3000/users');
 
       try {
         final response = await apiService.login(
@@ -43,7 +47,7 @@ class _LoginScreenState extends State<LoginScreen> {
         );
 
         // ignore: use_build_context_synchronously
-        Navigator.pushNamed(context, '/home');
+        AuthGuard().navigateTo(context, '/home');
       } catch (e) {
         setState(() {
           // _loginError = e.toString();
@@ -66,7 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.pushNamed(context, '/');
+            AuthGuard().navigateTo(context, '/');
           },
         ),
         title: Text(
@@ -107,7 +111,7 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ],
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Form(
           key: _formKey,
@@ -196,7 +200,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       recognizer: TapGestureRecognizer()
                         ..onTap = () {
-                          Navigator.pushNamed(context, '/register');
+                          AuthGuard().navigateTo(context, '/register');
                         },
                     ),
                   ],
