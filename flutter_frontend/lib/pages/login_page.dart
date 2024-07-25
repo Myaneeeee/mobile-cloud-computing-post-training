@@ -40,6 +40,8 @@ class _LoginScreenState extends State<LoginScreen> {
         );
 
         await storage.write(key: 'token', value: response['token']);
+        await storage.write(key: 'id', value: response['id']);
+        await storage.write(key: 'username', value: response['username']);
 
         // ignore: use_build_context_synchronously
         ScaffoldMessenger.of(context).showSnackBar(
