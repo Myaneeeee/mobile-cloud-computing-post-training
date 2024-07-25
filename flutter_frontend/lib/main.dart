@@ -34,15 +34,6 @@ class MyApp extends StatelessWidget {
         '/home': (context) => const HomeScreen(),
         '/profile': (context) => const ProfileScreen(),
       },
-      // onGenerateRoute: (settings) {
-      //   final authGuard = AuthGuard();
-      //   return MaterialPageRoute(
-      //     builder: (context) {
-      //       authGuard.navigateTo(context, settings.name!);
-      //       return const SizedBox.shrink();
-      //     },
-      //   );
-      // },
     );
   }
 }
