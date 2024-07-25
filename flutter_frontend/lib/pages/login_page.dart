@@ -39,21 +39,25 @@ class _LoginScreenState extends State<LoginScreen> {
           _passwordController.text,
         );
 
-        await storage.write(key: 'token', value: response['token']);
-        await storage.write(key: 'id', value: response['id']);
-        await storage.write(key: 'username', value: response['username']);
+        final String id = response['id'].toString();
+        final String username = response['username'];
+        final String token = response['token'];
+
+        await storage.write(key: 'token', value: token);
+        await storage.write(key: 'id', value: id);
+        await storage.write(key: 'username', value: username);
 
         // ignore: use_build_context_synchronously
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Login successful: ${response['username']}')),
+          SnackBar(content: Text('Login successful: $username')),
         );
 
         // ignore: use_build_context_synchronously
         AuthGuard().navigateTo(context, '/home');
       } catch (e) {
         setState(() {
-          // _loginError = e.toString();
-          _loginError = 'Wrong credentials';
+          _loginError = e.toString();
+          // _loginError = 'Wrong credentials';
         });
         _formKey.currentState?.validate();
       }

@@ -23,6 +23,8 @@ class ApiService {
     if (response.statusCode == 201) {
       // Registration successful
       return jsonDecode(response.body);
+    } else if (response.statusCode == 400) {
+      throw ("Email or username already exists");
     } else {
       // Registration failed
       throw Exception('Failed to register');

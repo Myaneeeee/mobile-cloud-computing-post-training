@@ -23,7 +23,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
 
+  String? _usernameError;
+  String? _emailError;
+
   void _register() async {
+    setState(() {
+      _usernameError = null;
+      _emailError = null;
+    });
+
     if (_formKey.currentState?.validate() ?? false) {
       final apiService = ApiService('http://10.0.2.2:3000/users');
 
@@ -43,9 +51,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
         // ignore: use_build_context_synchronously
         AuthGuard().navigateTo(context, '/login');
       } catch (e) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Registration failed: $e')),
-        );
+        final errorMessage = e.toString();
+
+        // Check if the error message is for email or username
+        if (errorMessage.contains('Email or username already exists')) {
+          setState(() {
+            _emailError = 'Email already exists';
+            _usernameError = 'Username already exists';
+          });
+        } else {
+          // Handle other errors
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Registration failed: $errorMessage')),
+          );
+        }
       }
     }
   }
@@ -116,9 +135,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
               const SizedBox(height: 20),
               TextFormField(
                 controller: _usernameController,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   labelText: 'Full Name',
-                  prefixIcon: Icon(Icons.person),
+                  prefixIcon: const Icon(Icons.person),
+                  errorText: _usernameError,
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -127,15 +147,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   if (value.length < 5) {
                     return 'Name must be at least 5 characters';
                   }
+                  if (_usernameError != null) {
+                    return _usernameError;
+                  }
                   return null;
                 },
               ),
               const SizedBox(height: 20),
               TextFormField(
                 controller: _emailController,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   labelText: 'Email Address',
-                  prefixIcon: Icon(Icons.email),
+                  prefixIcon: const Icon(Icons.email),
+                  errorText: _emailError,
                 ),
                 keyboardType: TextInputType.emailAddress,
                 validator: (value) {
@@ -148,6 +172,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   );
                   if (!emailRegExp.hasMatch(value)) {
                     return 'Please enter a valid email address';
+                  }
+                  if (_emailError != null) {
+                    return _emailError;
                   }
                   return null;
                 },

@@ -9,6 +9,22 @@ router.post("/register", async (req, res) => {
   const { username, email, password } = req.body;
 
   try {
+    // Check if the email or username already exists
+    const checkQuery = "SELECT * FROM msuser WHERE email = ? OR username = ?";
+    const checkResult = await new Promise((resolve, reject) => {
+      db.query(checkQuery, [email, username], (error, results) => {
+        if (error) return reject(error);
+        resolve(results);
+      });
+    });
+
+    if (checkResult.length > 0) {
+      return res
+        .status(400)
+        .json({ error: "Email or username already exists" });
+    }
+
+    // Proceed with registration
     const hashedPassword = await bcrypt.hash(password, 10);
     await new Promise((resolve, reject) => {
       db.query(
