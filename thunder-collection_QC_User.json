@@ -1,0 +1,57 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "QC_User",
+    "collectionId": "3eb248ae-50f9-473e-8b6f-ad6a1532d6dd",
+    "dateExported": "2024-07-26T13:28:54.969Z",
+    "version": "1.2",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "f30d6dc2-6787-41d6-a3e1-a34065d889c7",
+            "colId": "3eb248ae-50f9-473e-8b6f-ad6a1532d6dd",
+            "containerId": "",
+            "name": "login",
+            "url": "http://localhost:3000/users/login",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-07-26T04:42:08.978Z",
+            "modified": "2024-07-26T04:42:08.978Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"david@gmail.com\",\n  \"password\": \"david123\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "ad00e52c-dcde-41a5-8d67-710f4e5547d0",
+            "colId": "3eb248ae-50f9-473e-8b6f-ad6a1532d6dd",
+            "containerId": "",
+            "name": "Register",
+            "url": "http://localhost:3000/users/register",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2024-07-26T04:42:41.288Z",
+            "modified": "2024-07-26T13:18:50.099Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"username\": \"david\",\n  \"email\": \"david@gmail.com\",\n  \"password\": \"david123\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "b35a4b59-adfd-4922-8553-294aa4058ba7",
+            "colId": "3eb248ae-50f9-473e-8b6f-ad6a1532d6dd",
+            "containerId": "",
+            "name": "get-by-id",
+            "url": "http://localhost:3000/users/get/1",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2024-07-26T10:44:19.883Z",
+            "modified": "2024-07-26T10:44:39.942Z",
+            "headers": []
+        }
+    ],
+    "ref": "KtsYvD7Oe-4QJxoCY55Mr104xx94-Z3iBdYxYKZxZpg9mWjmdtHLt44ENy2RV72DDJu1jfCI-graw1QrTr95qQ"
+}

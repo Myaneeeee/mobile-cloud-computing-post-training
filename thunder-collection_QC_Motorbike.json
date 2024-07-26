@@ -1,0 +1,119 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "QC_Motorbike",
+    "collectionId": "bff4d9d4-8b96-4728-b01e-976ae5ae898a",
+    "dateExported": "2024-07-26T13:29:16.815Z",
+    "version": "1.2",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "2905f8e6-f190-4940-9a2c-67c87a2f2430",
+            "colId": "bff4d9d4-8b96-4728-b01e-976ae5ae898a",
+            "containerId": "",
+            "name": "get-all",
+            "url": "http://localhost:3000/motorbikes",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2024-07-26T04:43:17.345Z",
+            "modified": "2024-07-26T05:02:34.422Z",
+            "headers": []
+        },
+        {
+            "_id": "f5d8a0e8-7bd4-4413-96dc-3d1c88c1f628",
+            "colId": "bff4d9d4-8b96-4728-b01e-976ae5ae898a",
+            "containerId": "",
+            "name": "get-by-id",
+            "url": "http://localhost:3000/motorbikes/get/1",
+            "method": "GET",
+            "sortNum": 25000,
+            "created": "2024-07-26T05:05:13.603Z",
+            "modified": "2024-07-26T05:06:20.958Z",
+            "headers": []
+        },
+        {
+            "_id": "9d3c936b-9921-4507-85f8-4738fda6183b",
+            "colId": "bff4d9d4-8b96-4728-b01e-976ae5ae898a",
+            "containerId": "",
+            "name": "create",
+            "url": "http://localhost:3000/motorbikes/create",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2024-07-26T04:47:24.500Z",
+            "modified": "2024-07-26T13:19:22.473Z",
+            "headers": [],
+            "body": {
+                "type": "formdata",
+                "raw": "",
+                "form": [
+                    {
+                        "name": "motorbikeName",
+                        "value": "Nightster"
+                    },
+                    {
+                        "name": "motorbikePrice",
+                        "value": "112233"
+                    },
+                    {
+                        "name": "motorbikeDescription",
+                        "value": "Dirancang untuk menginspirasi para pengendara di semua tingkat keahlian, Harley-Davidson Nightster memperkenalkan narasi baru dalam cerita Sportster™."
+                    }
+                ],
+                "files": [
+                    {
+                        "name": "image",
+                        "value": "c:\\Users\\david\\Downloads\\nightster.png"
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "8e7a650b-ab05-445e-9593-acf05b47133a",
+            "colId": "bff4d9d4-8b96-4728-b01e-976ae5ae898a",
+            "containerId": "",
+            "name": "delete",
+            "url": "http://localhost:3000/motorbikes/delete/1",
+            "method": "DELETE",
+            "sortNum": 40000,
+            "created": "2024-07-26T09:06:02.215Z",
+            "modified": "2024-07-26T13:19:29.083Z",
+            "headers": []
+        },
+        {
+            "_id": "f3d49970-d02c-4645-a9c9-d12824746083",
+            "colId": "bff4d9d4-8b96-4728-b01e-976ae5ae898a",
+            "containerId": "",
+            "name": "update",
+            "url": "http://localhost:3000/motorbikes/update/3",
+            "method": "PUT",
+            "sortNum": 50000,
+            "created": "2024-07-26T09:08:18.792Z",
+            "modified": "2024-07-26T09:18:26.397Z",
+            "headers": [],
+            "body": {
+                "type": "formdata",
+                "raw": "",
+                "form": [
+                    {
+                        "name": "motorbikeName",
+                        "value": "Nightster"
+                    },
+                    {
+                        "name": "motorbikePrice",
+                        "value": "444444"
+                    },
+                    {
+                        "name": "motorbikeDescription",
+                        "value": "Dirancang untuk menginspirasi para pengendara di semua tingkat keahlian, Harley-Davidson Nightster memperkenalkan narasi baru dalam cerita Sportster™."
+                    }
+                ],
+                "files": [
+                    {
+                        "name": "motorbikeImage",
+                        "value": "c:\\Users\\david\\Downloads\\nightster.png"
+                    }
+                ]
+            }
+        }
+    ],
+    "ref": "amyZPqxPnGuRd6yYnYW9Bk67lrHJhar7NQqIudwZrUZmOfbwpCU4ZYrkI3JTPXY_TYaImdfRQ3DRRZx_qSIQtg"
+}

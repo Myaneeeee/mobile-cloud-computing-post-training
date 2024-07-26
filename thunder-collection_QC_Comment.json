@@ -1,0 +1,69 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "QC_Comment",
+    "collectionId": "b4e9fb44-2493-40da-806a-be76f2e54d74",
+    "dateExported": "2024-07-26T13:29:26.581Z",
+    "version": "1.2",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "d1724962-9cd0-4ac6-a10f-5c9e90c5d59d",
+            "colId": "b4e9fb44-2493-40da-806a-be76f2e54d74",
+            "containerId": "",
+            "name": "post",
+            "url": "http://localhost:3000/comments/post",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-07-26T08:02:44.032Z",
+            "modified": "2024-07-26T13:19:39.643Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"motorbikeId\" : \"1\",\n  \"userId\" : \"1\",\n  \"commentText\" : \"This is a comment\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "a1f6f3bd-65c6-4f84-ade7-79faf52c1289",
+            "colId": "b4e9fb44-2493-40da-806a-be76f2e54d74",
+            "containerId": "",
+            "name": "get-by-id",
+            "url": "http://localhost:3000/comments/get/1",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2024-07-26T08:02:57.186Z",
+            "modified": "2024-07-26T08:12:01.916Z",
+            "headers": []
+        },
+        {
+            "_id": "71b2fb37-ed31-4c79-a53d-d0c688a488e9",
+            "colId": "b4e9fb44-2493-40da-806a-be76f2e54d74",
+            "containerId": "",
+            "name": "edit",
+            "url": "http://localhost:3000/comments/edit/1",
+            "method": "PUT",
+            "sortNum": 30000,
+            "created": "2024-07-26T09:27:40.327Z",
+            "modified": "2024-07-26T13:19:47.012Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"commentText\": \"Motornya keren banget\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "53ab607f-b111-450e-b69e-0f4aa4c86daf",
+            "colId": "b4e9fb44-2493-40da-806a-be76f2e54d74",
+            "containerId": "",
+            "name": "delete",
+            "url": "http://localhost:3000/comments/delete/1",
+            "method": "DELETE",
+            "sortNum": 40000,
+            "created": "2024-07-26T09:37:58.899Z",
+            "modified": "2024-07-26T13:19:50.617Z",
+            "headers": []
+        }
+    ],
+    "ref": "UENtkTM7RLplqEWYGPWgeFZAid42S8C7vbaa5sC32j5yIylrE583a9dELfR2kfC_Ldc7DeZt-QR0efDGk_dxtQ"
+}
