@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-class ApiService {
+class UserService {
   final String baseUrl;
 
-  ApiService(this.baseUrl);
+  UserService(this.baseUrl);
 
   Future<Map<String, dynamic>> register(
       String username, String email, String password) async {

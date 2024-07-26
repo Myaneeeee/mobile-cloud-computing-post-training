@@ -1,9 +1,9 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:frontend/api/user_service.dart';
 import 'package:frontend/auth_guard.dart';
 import 'package:provider/provider.dart';
 import 'package:frontend/theme/theme_provider.dart';
-import 'package:frontend/api_service.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -21,7 +21,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
-  final storage = FlutterSecureStorage();
+  final storage = const FlutterSecureStorage();
 
   String? _loginError;
 
@@ -31,7 +31,7 @@ class _LoginScreenState extends State<LoginScreen> {
     });
 
     if (_formKey.currentState?.validate() ?? false) {
-      final apiService = ApiService('http://10.0.2.2:3000/users');
+      final apiService = UserService('http://10.0.2.2:3000/users');
 
       try {
         final response = await apiService.login(

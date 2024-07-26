@@ -49,7 +49,7 @@ router.post("/login", async (req, res) => {
   try {
     const result = await new Promise((resolve, reject) => {
       db.query(
-        "SELECT id, username, password FROM msuser WHERE email = ?",
+        "SELECT userId, username, password FROM msuser WHERE email = ?",
         [email],
         (error, results) => {
           if (error) return reject(error);
@@ -68,7 +68,9 @@ router.post("/login", async (req, res) => {
         process.env.API_SECRET,
         { expiresIn: "1d" }
       );
-      res.status(200).json({ id: user.id, username: user.username, token });
+      res
+        .status(200)
+        .json({ userId: user.userId, username: user.username, token });
     } else {
       res.status(400).json({ error: "Invalid credentials" });
     }

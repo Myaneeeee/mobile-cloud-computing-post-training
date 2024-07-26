@@ -1,9 +1,9 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:frontend/api/user_service.dart';
 import 'package:frontend/auth_guard.dart';
 import 'package:provider/provider.dart';
 import 'package:frontend/theme/theme_provider.dart';
-import 'package:frontend/api_service.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -33,7 +33,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     });
 
     if (_formKey.currentState?.validate() ?? false) {
-      final apiService = ApiService('http://10.0.2.2:3000/users');
+      final apiService = UserService('http://10.0.2.2:3000/users');
 
       try {
         final response = await apiService.register(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/auth_guard.dart';
 import 'package:frontend/pages/home_page.dart';
+import 'package:frontend/pages/items_page.dart';
 import 'package:frontend/pages/login_page.dart';
 import 'package:frontend/pages/profile_page.dart';
 import 'package:frontend/pages/register_page.dart';
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
         '/login': (context) => const LoginScreen(),
         '/register': (context) => const RegisterScreen(),
         '/home': (context) => const HomeScreen(),
+        '/items': (context) => const ItemsScreen(),
         '/profile': (context) => const ProfileScreen(),
       },
     );
