@@ -17,7 +17,7 @@ var upload = multer({
   storage: storage,
 });
 
-var insertMotorbikes = (
+var createMotorbikes = (
   motorbikeName,
   motorbikePrice,
   motorbikeDescription,
@@ -53,11 +53,23 @@ var getMotorbikesById = (id) =>
     );
   });
 
-// router.use(auth);
+var deleteMotorbike = (id) =>
+  new Promise((resolve, reject) => {
+    db.query(
+      "DELETE FROM msmotorbike WHERE motorbikeId = ?",
+      [id],
+      (error, result) => {
+        if (!!error) reject(error);
+        resolve(result);
+      }
+    );
+  });
+
+router.use(auth);
 
 router.post("/create", upload.single("image"), function (req, res, next) {
   const body = req.body;
-  insertMotorbikes(
+  createMotorbikes(
     body.motorbikeName,
     body.motorbikePrice,
     body.motorbikeDescription,
@@ -87,6 +99,19 @@ router.get("/get/:id", function (req, res, next) {
   getMotorbikesById(req.params.id).then(
     (result) => {
       res.status(200).json(result);
+    },
+    (error) => {
+      res.status(500).send(error);
+    }
+  );
+});
+
+router.delete("/delete/:id", function (req, res, next) {
+  deleteMotorbike(req.params.id).then(
+    (result) => {
+      res
+        .status(200)
+        .json({ message: "Motorbike deleted successfully", result });
     },
     (error) => {
       res.status(500).send(error);
