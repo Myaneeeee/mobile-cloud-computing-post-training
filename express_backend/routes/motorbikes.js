@@ -44,7 +44,7 @@ var getMotorbikes = new Promise((resolve, reject) => {
 var getMotorbikesById = (id) =>
   new Promise((resolve, reject) => {
     db.query(
-      "SELECT * FROM msmotorbike where motorbikeId = ?",
+      "SELECT * FROM msmotorbike WHERE motorbikeId = ?",
       [id],
       (error, result) => {
         if (!!error) reject(error);

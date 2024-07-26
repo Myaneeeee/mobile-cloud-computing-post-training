@@ -88,7 +88,7 @@ class WelcomeScreen extends StatelessWidget {
               },
               style: TextButton.styleFrom(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 100, vertical: 20),
+                    const EdgeInsets.symmetric(horizontal: 110, vertical: 20),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15),
                 ),

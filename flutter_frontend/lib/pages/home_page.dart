@@ -9,11 +9,12 @@ class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _HomeScreenState createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int _currentIndex = 0; // Set the initial index to 0 (Home)
+  int _currentIndex = 0;
   final FlutterSecureStorage _storage = const FlutterSecureStorage();
   String? _username;
 
@@ -176,7 +177,6 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
         onTap: (index) {
           if (index == _currentIndex) {
-            // Do nothing if the same item is tapped
             return;
           }
           switch (index) {

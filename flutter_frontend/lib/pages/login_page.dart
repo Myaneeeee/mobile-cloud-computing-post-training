@@ -1,6 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:frontend/api/user_service.dart';
+import 'package:frontend/services/user_service.dart';
 import 'package:frontend/auth_guard.dart';
 import 'package:provider/provider.dart';
 import 'package:frontend/theme/theme_provider.dart';
@@ -39,12 +39,12 @@ class _LoginScreenState extends State<LoginScreen> {
           _passwordController.text,
         );
 
-        final String id = response['id'].toString();
+        final String id = response['userId'].toString();
         final String username = response['username'];
         final String token = response['token'];
 
         await storage.write(key: 'token', value: token);
-        await storage.write(key: 'id', value: id);
+        await storage.write(key: 'userId', value: id);
         await storage.write(key: 'username', value: username);
 
         // ignore: use_build_context_synchronously
@@ -56,8 +56,8 @@ class _LoginScreenState extends State<LoginScreen> {
         AuthGuard().navigateTo(context, '/home');
       } catch (e) {
         setState(() {
-          _loginError = e.toString();
-          // _loginError = 'Wrong credentials';
+          // _loginError = e.toString();
+          _loginError = 'Wrong credentials';
         });
         _formKey.currentState?.validate();
       }

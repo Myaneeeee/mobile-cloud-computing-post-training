@@ -1,6 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:frontend/api/user_service.dart';
+import 'package:frontend/services/user_service.dart';
 import 'package:frontend/auth_guard.dart';
 import 'package:provider/provider.dart';
 import 'package:frontend/theme/theme_provider.dart';
@@ -53,14 +53,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
       } catch (e) {
         final errorMessage = e.toString();
 
-        // Check if the error message is for email or username
         if (errorMessage.contains('Email or username already exists')) {
           setState(() {
             _emailError = 'Email already exists';
             _usernameError = 'Username already exists';
           });
         } else {
-          // Handle other errors
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text('Registration failed: $errorMessage')),
           );

@@ -1,11 +1,15 @@
 var express = require("express");
 const db = require("../database/db");
 var router = express.Router();
+var auth = require("./../middleware/auth");
 
 var getCommentsFromMotorbike = (motorbikeId) =>
   new Promise((resolve, reject) => {
     db.query(
-      "SELECT * FROM comments WHERE motorbikeId = ?",
+      `SELECT c.commentText, c.commentDate, u.username
+       FROM comments c
+       JOIN msuser u ON c.userId = u.userId
+       WHERE c.motorbikeId = ?`,
       [motorbikeId],
       (error, result) => {
         if (error) reject(error);
@@ -49,6 +53,8 @@ var deleteComment = (commentId) =>
       }
     );
   });
+
+// router.use(auth);
 
 router.post("/post", function (req, res, next) {
   const body = req.body;

@@ -1,6 +1,5 @@
-// items_screen.dart
 import 'package:flutter/material.dart';
-import 'package:frontend/api/motorbike_service.dart';
+import 'package:frontend/services/motorbike_service.dart';
 import 'package:frontend/model/motorbike_model.dart';
 import 'package:frontend/pages/detail_page.dart';
 import 'package:provider/provider.dart';
@@ -11,6 +10,7 @@ class ItemsScreen extends StatefulWidget {
   const ItemsScreen({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _ItemsScreenState createState() => _ItemsScreenState();
 }
 
@@ -97,7 +97,6 @@ class _ItemsScreenState extends State<ItemsScreen> {
                     title: Text(motorbike.name),
                     subtitle: Text('\$ ${motorbike.price}'),
                     onTap: () {
-                      // Navigate to DetailPage with motorbike details
                       Navigator.push(
                         context,
                         MaterialPageRoute(
