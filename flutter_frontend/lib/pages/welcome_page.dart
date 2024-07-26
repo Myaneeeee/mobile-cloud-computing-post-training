@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:frontend/auth_guard.dart';
 import 'package:provider/provider.dart';
 import 'package:frontend/theme/theme_provider.dart';
-import 'package:frontend/widgets/logo_widget.dart'; // Import the LogoWidget
+import 'package:frontend/widgets/logo_widget.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -52,51 +53,92 @@ class WelcomeScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const LogoWidget(),
-            const Text(
-              'Live to Ride, Ride to Live',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const SizedBox(height: 30),
+          const LogoWidget(),
+          const SizedBox(height: 20),
+          const Text(
+            'Live to Ride, Ride to Live',
+            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 10),
+          const Text(
+            'Ultimate rides at unbeatable prices',
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 20),
+          ),
+          const SizedBox(height: 50),
+          ElevatedButton(
+            onPressed: () {
+              AuthGuard().navigateTo(context, '/register');
+            },
+            style: ElevatedButton.styleFrom(
+              padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15),
+              ),
             ),
-            const SizedBox(height: 10),
-            const Text(
-              'Ultimate rides at unbeatable prices',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 20),
+            child: const Text('CREATE AN ACCOUNT'),
+          ),
+          const SizedBox(height: 20),
+          TextButton(
+            onPressed: () {
+              AuthGuard().navigateTo(context, '/login');
+            },
+            style: TextButton.styleFrom(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 110, vertical: 15),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15),
+              ),
             ),
-            const SizedBox(height: 50),
-            ElevatedButton(
-              onPressed: () {
-                AuthGuard().navigateTo(context, '/register');
-              },
-              style: ElevatedButton.styleFrom(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15),
+            child: const Text('LOG IN'),
+          ),
+          const SizedBox(height: 20),
+          const Divider(
+            color: Colors.grey,
+            height: 30,
+            thickness: 1,
+            indent: 20,
+            endIndent: 20,
+          ),
+          const SizedBox(height: 10),
+          const Text(
+            'Or',
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+          ),
+          const SizedBox(height: 10),
+          SizedBox(
+            width: 250,
+            child: TextButton.icon(
+              onPressed: () {},
+              icon: Padding(
+                padding: const EdgeInsets.only(left: 15.0),
+                child: SvgPicture.asset(
+                  'assets/images/google.svg',
+                  height: 24,
+                  width: 24,
                 ),
               ),
-              child: const Text('CREATE AN ACCOUNT'),
-            ),
-            const SizedBox(height: 20),
-            TextButton(
-              onPressed: () {
-                AuthGuard().navigateTo(context, '/login');
-              },
+              label: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  Text('Continue with Google'),
+                  SizedBox(width: 10),
+                ],
+              ),
               style: TextButton.styleFrom(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 110, vertical: 20),
+                    const EdgeInsets.symmetric(horizontal: 0, vertical: 15),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15),
                 ),
               ),
-              child: const Text('LOG IN'),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
