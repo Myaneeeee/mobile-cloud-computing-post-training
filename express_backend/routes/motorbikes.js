@@ -65,7 +65,31 @@ var deleteMotorbike = (id) =>
     );
   });
 
-router.use(auth);
+var updateMotorbike = (
+  motorbikeId,
+  motorbikeName,
+  motorbikePrice,
+  motorbikeDescription,
+  motorbikeImage
+) =>
+  new Promise((resolve, reject) => {
+    db.query(
+      "UPDATE msmotorbike SET motorbikeName = ?, motorbikePrice = ?, motorbikeDescription = ?, motorbikeImage = ? WHERE motorbikeId = ?",
+      [
+        motorbikeName,
+        motorbikePrice,
+        motorbikeDescription,
+        motorbikeImage,
+        motorbikeId,
+      ],
+      (error, result) => {
+        if (!!error) reject(error);
+        resolve(result);
+      }
+    );
+  });
+
+// router.use(auth);
 
 router.post("/create", upload.single("image"), function (req, res, next) {
   const body = req.body;
@@ -118,5 +142,40 @@ router.delete("/delete/:id", function (req, res, next) {
     }
   );
 });
+
+router.put(
+  "/update/:id",
+  upload.single("motorbikeImage"),
+  function (req, res, next) {
+    const motorbikeId = req.params.id;
+    const body = req.body;
+    const motorbikeImage = req.file
+      ? req.file.path.replace("public\\", "")
+      : null;
+
+    if (
+      !body.motorbikeName ||
+      !body.motorbikePrice ||
+      !body.motorbikeDescription
+    ) {
+      return res.status(400).json({ message: "All fields are required" });
+    }
+
+    updateMotorbike(
+      motorbikeId,
+      body.motorbikeName,
+      body.motorbikePrice,
+      body.motorbikeDescription,
+      motorbikeImage
+    ).then(
+      (result) => {
+        res.status(200).json(result);
+      },
+      (error) => {
+        res.status(500).send(error);
+      }
+    );
+  }
+);
 
 module.exports = router;
